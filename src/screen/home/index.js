@@ -1,12 +1,18 @@
 import React from 'react'
-import { View, Text, TextInput, TouchableOpacity,AsyncStorage } from 'react-native';
+import { View, Text, TextInput, StatusBar, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import firebase from 'firebase';
-class Home extends React.Component{
-    state={
-        name: 'test1@gmail.com',
-        pass: 'test123'
+import { AppIcon } from '../../asset'
+import { height_screen, width_screen } from '../../config'
+import { iconEmail, iconLock } from '../../asset'
+import { Button, InputTextCustom } from '../../component'
+class Home extends React.Component {
+    state = {
+        // name: 'test1@gmail.com',
+        // pass: 'test123'
+        name: '',
+        pass: ''
     }
-    componentDidMount(){
+    componentDidMount() {
         const firebaseConfig = {
             apiKey: "AIzaSyD31kM7wX_lLFShPH10jgoRcGo1__1DXcM",
             authDomain: "myapp-860b3.firebaseapp.com",
@@ -15,7 +21,7 @@ class Home extends React.Component{
             storageBucket: "myapp-860b3.appspot.com",
             messagingSenderId: "1089323216357",
             appId: "1:1089323216357:web:000618631b608bfce7930c"
-          };
+        };
         firebase.initializeApp(firebaseConfig);
     }
 
@@ -24,20 +30,20 @@ class Home extends React.Component{
     }
 
     onChangeName = (text, num) => {
-        if(num===1) {
-            this.setState({ name : text }) 
+        if (num === 1) {
+            this.setState({ name: text })
             return
         }
-        this.setState({pass: text})
+        this.setState({ pass: text })
     };
 
-    login = async(user, success_callback, failed_callback) => {
+    login = async (user, success_callback, failed_callback) => {
         await firebase.auth()
-          .signInWithEmailAndPassword(user.email, user.password)
-        .then(success_callback, failed_callback);
-     }
+            .signInWithEmailAndPassword(user.email, user.password)
+            .then(success_callback, failed_callback);
+    }
 
-    onLogin = async() => {
+    onLogin = async () => {
         let user = {
             email: this.state.name,
             password: this.state.pass
@@ -47,47 +53,52 @@ class Home extends React.Component{
 
     loginSuccess = () => {
         console.log('SUCCESS')
+        this.props.navigation.navigate('Chat')
     }
 
     loginFailed = (err) => {
         console.log('Failed', err)
     }
 
-    render(){
-        return(
-            <View style={{ flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-start', padding: 10, paddingBottom: 15 }} >
-                <Text>
-                    ENTER YOUR NAME :
-                </Text>
-                <TextInput 
-                
-                    value={this.state.name}
-                    placeholder="" style={{
-                    borderColor: "#A5A5A5",
-                    borderWidth: 0.5, padding: 8, width: '100%', marginBottom: 15, marginTop: 15
-                    }} 
-                    onChangeText={(text) => this.onChangeName(text, 1)}
+    render() {
+        return (
+            <View style={styles.view1}>
+                <StatusBar barStyle="light-content" backgroundColor="#a74fff" />
+
+                <Image source={AppIcon} style={styles.image} />
+                <View style={{ width: '100%' }}>
+                    <InputTextCustom
+                        placeHoder="Tài khoản (Email)"
+                        txtStyle={styles.textInput}
+                        onChangeText={(tx) => this.setState({ name: tx })}
+                        urlIcon={iconEmail}
+                        keyboardType="email-address"
+                    />
+
+                    <InputTextCustom
+                        placeHoder="Mật khẩu"
+                        txtStyle={styles.textInput}
+                        onChangeText={(tx) => this.setState({ pass: tx })}
+                        urlIcon={iconLock}
+                        viewStyle={{ marginTop: 5 }}
+                    />
+
+                </View>
+                <Button title="Đăng nhập"
+                    styleBtn={{ marginTop: 35 }}
                 />
-                <Text>
-                    ENTER YOUR PASS :
-                </Text>
-                <TextInput 
-                    value={this.state.pass}
-                    placeholder="" 
-                    style={{
-                        borderColor: "#A5A5A5",
-                    borderWidth: 0.5, padding: 8, width: '100%', marginBottom: 15, marginTop: 15
-                    }} 
-                    onChangeText={(text) => this.onChangeName(text, 2)}
-                />
-                <TouchableOpacity onPress={() => this.onLogin()} >
-                    <Text style={{ fontWeight: 'bold' }} >
-                        Join Now
-                    </Text>
-                </TouchableOpacity>
-            </View>
+            </View >
         )
     }
 }
+
+const styles = StyleSheet.create({
+    view1: { height: height_screen, backgroundColor: '#c991ff', alignItems: 'center', justifyContent: 'center' },
+    textInput: { width: '100%', fontSize: 15, height: 42 },
+    viewInput: { flexDirection: 'row', marginHorizontal: 15, borderBottomColor: "white", borderBottomWidth: 0.5, alignItems: 'center' },
+    image: { height: 150, width: 150, position: 'absolute', top: 60 },
+    image2: { height: 16, width: 18 },
+
+})
 
 export default Home

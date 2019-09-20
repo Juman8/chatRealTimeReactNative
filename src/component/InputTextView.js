@@ -1,0 +1,74 @@
+import React from 'react'
+import { View, Text, TextInput, StyleSheet, Image, Animated, Easing } from 'react-native'
+
+class InputTextCustom extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            txtName: '',
+            txtColor: props.txtColor || 'white',
+            path: props.urlIcon,
+            opacity: 0
+        }
+    }
+
+    // onAnimate = () => {
+    //     return Animated.timing(
+    //         this.spinValue,
+    //         {
+    //             toValue: 1,
+    //             duration: 4000,
+    //             easing: Easing.linear
+    //         })
+    // }
+
+    onChangeText = (tx) => {
+        const { onChangeText } = this.props
+        this.setState({ txtName: tx }, () => {
+            onChangeText(tx.trim())
+        })
+    }
+    onForcus = (status) => {
+        const { txtColor } = this.props
+        if (status) {
+            this.setState({ txtColor: '#2e4aff', opacity: 1 })
+        } else {
+            this.setState({ txtColor: txtColor || 'white', opacity: 0 })
+        }
+    }
+    render() {
+        const { txtName, txtColor, opacity, path } = this.state
+        const { placeHoder, txtStyle, viewStyle, keyboardType = "default" } = this.props
+        let isCheck = opacity > 0
+        return (
+            <View style={viewStyle}>
+                <Text style={[styles.textLable, { opacity }]}>{placeHoder}</Text>
+                <View style={styles.viewInput}>
+                    <Image source={path} style={styles.image2} />
+                    <TextInput
+                        value={txtName}
+                        placeholder={isCheck ? '' : placeHoder}
+                        onChangeText={this.onChangeText}
+                        style={[{ color: txtColor, fontSize: 17, paddingLeft: 10 }, txtStyle]}
+                        placeholderTextColor="rgba(255, 255, 255, 0.7)"
+                        onFocus={() => this.onForcus(true)}
+                        onBlur={() => this.onForcus(false)}
+                        autoCapitalize="none"
+                        scrollEnabled={false}
+                        keyboardType={keyboardType}
+                    />
+                </View>
+            </View>
+        )
+    }
+}
+
+const styles = StyleSheet.create({
+    textInput: { width: '100%', fontSize: 17 },
+    viewInput: { flexDirection: 'row', marginHorizontal: 15, borderBottomColor: "white", borderBottomWidth: 0.5, alignItems: 'center' },
+    image2: { height: 16, width: 18 },
+    textLable: { marginLeft: 15, color: 'white', fontSize: 16, fontWeight: '400' }
+})
+
+
+export default InputTextCustom
