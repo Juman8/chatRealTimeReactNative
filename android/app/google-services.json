@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1089323216357",
+    "firebase_url": "https://myapp-860b3.firebaseio.com",
+    "project_id": "myapp-860b3",
+    "storage_bucket": "myapp-860b3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089323216357:android:559aefa6a07d1c56e7930c",
+        "android_client_info": {
+          "package_name": "com.chatsimple"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1089323216357-8ifkra4fqvclcpros64gae7j8n9j0k6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJpWc1xnQSOXfjk0wZbrcXlbuLQ_pXKqA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1089323216357-8ifkra4fqvclcpros64gae7j8n9j0k6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
