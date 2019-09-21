@@ -1,28 +1,18 @@
 import React from 'react'
 import { View, Text, TextInput, StatusBar, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import firebase from 'firebase';
 import { AppIcon } from '../../asset'
 import { height_screen, width_screen } from '../../config'
-import { iconEmail, iconLock } from '../../asset'
 import { Button, InputTextCustom } from '../../component'
+import utils from '../../utils'
 class Home extends React.Component {
     state = {
         // name: 'test1@gmail.com',
         // pass: 'test123'
         name: '',
-        pass: ''
+        pass: '',
+        isLoading: false
     }
     componentDidMount() {
-        const firebaseConfig = {
-            apiKey: "AIzaSyD31kM7wX_lLFShPH10jgoRcGo1__1DXcM",
-            authDomain: "myapp-860b3.firebaseapp.com",
-            databaseURL: "https://myapp-860b3.firebaseio.com",
-            projectId: "myapp-860b3",
-            storageBucket: "myapp-860b3.appspot.com",
-            messagingSenderId: "1089323216357",
-            appId: "1:1089323216357:web:000618631b608bfce7930c"
-        };
-        firebase.initializeApp(firebaseConfig);
     }
 
     onPress = () => {
@@ -37,27 +27,29 @@ class Home extends React.Component {
         this.setState({ pass: text })
     };
 
-    login = async (user, success_callback, failed_callback) => {
-        await firebase.auth()
-            .signInWithEmailAndPassword(user.email, user.password)
-            .then(success_callback, failed_callback);
-    }
-
     onLogin = async () => {
+        this.setState({ isLoading: true })
         let user = {
             email: this.state.name,
             password: this.state.pass
         }
-        this.login(user, this.loginSuccess, this.loginFailed)
+        utils.onLogin(user, this.loginSuccess, this.loginFailed)
     }
 
     loginSuccess = () => {
         console.log('SUCCESS')
+        this.setState({ isLoading: false })
         this.props.navigation.navigate('Chat')
     }
 
     loginFailed = (err) => {
-        console.log('Failed', err)
+        this.setState({ isLoading: false })
+        utils.showToast(err.message, 1500)
+        console.log('Failed', err.message)
+    }
+
+    onRegister = () => {
+        this.props.navigation.navigate('RegisterScreen')
     }
 
     render() {
@@ -71,22 +63,28 @@ class Home extends React.Component {
                         placeHoder="Tài khoản (Email)"
                         txtStyle={styles.textInput}
                         onChangeText={(tx) => this.setState({ name: tx })}
-                        urlIcon={iconEmail}
                         keyboardType="email-address"
+                        numOfType={1}
+                        nameIcon="user"
                     />
 
                     <InputTextCustom
                         placeHoder="Mật khẩu"
                         txtStyle={styles.textInput}
                         onChangeText={(tx) => this.setState({ pass: tx })}
-                        urlIcon={iconLock}
                         viewStyle={{ marginTop: 5 }}
+                        numOfType={3}
+                        nameIcon="unlocked"
                     />
+
 
                 </View>
                 <Button title="Đăng nhập"
                     styleBtn={{ marginTop: 35 }}
+                    onPress={this.onLogin}
+                    isLoading={this.state.isLoading}
                 />
+                <Text style={{ color: 'white', marginTop: 5, textDecorationLine: 'underline' }} onPress={this.onRegister}>Đăng ký</Text>
             </View >
         )
     }

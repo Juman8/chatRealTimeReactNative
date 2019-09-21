@@ -15,6 +15,7 @@ class ChatScreen extends React.Component {
             <View>
                 <Header
                     title="Đăng nhập"
+                    navigation={this.props.navigation}
                 />
                 <Text>Man Hinh Chat</Text>
                 <Button

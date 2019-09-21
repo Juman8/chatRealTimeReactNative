@@ -1,5 +1,8 @@
 import React from 'react'
 import { View, Text, TextInput, StyleSheet, Image, Animated, Easing } from 'react-native'
+import Icon1 from 'react-native-vector-icons/FontAwesome5'
+import Icon2 from 'react-native-vector-icons/AntDesign'
+import Icon3 from 'react-native-vector-icons/Fontisto'
 
 class InputTextCustom extends React.Component {
     constructor(props) {
@@ -9,6 +12,21 @@ class InputTextCustom extends React.Component {
             txtColor: props.txtColor || 'white',
             path: props.urlIcon,
             opacity: 0
+        }
+    }
+
+    getIcon = () => {
+        const { numOfType, nameIcon, colorIcon = "white" } = this.props
+        switch (numOfType) {
+            case 1: {
+                return <Icon1 name={nameIcon} size={20} color={colorIcon} />
+            }
+            case 2: {
+                return <Icon2 name={nameIcon} size={20} color={colorIcon} />
+            }
+            case 3: {
+                return <Icon3 name={nameIcon} size={20} color={colorIcon} />
+            }
         }
     }
 
@@ -25,10 +43,11 @@ class InputTextCustom extends React.Component {
     onChangeText = (tx) => {
         const { onChangeText } = this.props
         this.setState({ txtName: tx }, () => {
-            onChangeText(tx.trim())
+            onChangeText(tx)
         })
     }
     onForcus = (status) => {
+        const { txtName } = this.state
         const { txtColor } = this.props
         if (status) {
             this.setState({ txtColor: '#2e4aff', opacity: 1 })
@@ -38,13 +57,14 @@ class InputTextCustom extends React.Component {
     }
     render() {
         const { txtName, txtColor, opacity, path } = this.state
-        const { placeHoder, txtStyle, viewStyle, keyboardType = "default" } = this.props
+        const { placeHoder, txtStyle, viewStyle, keyboardType = "default", isPassWord = false, lable } = this.props
         let isCheck = opacity > 0
         return (
             <View style={viewStyle}>
-                <Text style={[styles.textLable, { opacity }]}>{placeHoder}</Text>
+                <Text style={[styles.textLable, { opacity }]}>{isPassWord && lable ? lable : placeHoder}</Text>
                 <View style={styles.viewInput}>
-                    <Image source={path} style={styles.image2} />
+                    {/* <Image source={path} style={styles.image2} /> */}
+                    {this.getIcon()}
                     <TextInput
                         value={txtName}
                         placeholder={isCheck ? '' : placeHoder}
@@ -56,6 +76,7 @@ class InputTextCustom extends React.Component {
                         autoCapitalize="none"
                         scrollEnabled={false}
                         keyboardType={keyboardType}
+                        secureTextEntry={isPassWord}
                     />
                 </View>
             </View>
