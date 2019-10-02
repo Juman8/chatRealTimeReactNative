@@ -56,9 +56,10 @@ class Home extends React.Component {
         return (
             <View style={styles.view1}>
                 <StatusBar barStyle="light-content" backgroundColor="#a74fff" />
-
-                <Image source={AppIcon} style={styles.image} />
-                <View style={{ width: '100%' }}>
+                <View style={{ flex: 3, alignItems: 'center', justifyContent: 'center'  }}>
+                    <Image source={AppIcon} style={styles.image} />
+                </View>
+                <View style={{ width: '100%', flex: 4, alignItems: 'center',  }}>
                     <InputTextCustom
                         placeHoder="Tài khoản (Email)"
                         txtStyle={styles.textInput}
@@ -66,6 +67,7 @@ class Home extends React.Component {
                         keyboardType="email-address"
                         numOfType={1}
                         nameIcon="user"
+                        txtColor="#000"
                     />
 
                     <InputTextCustom
@@ -75,26 +77,29 @@ class Home extends React.Component {
                         viewStyle={{ marginTop: 5 }}
                         numOfType={3}
                         nameIcon="unlocked"
+                        txtColor="#000"
+                        isPassWord
                     />
-
-
+                    <Button title="Đăng nhập"
+                        styleBtn={{ marginTop: 35, width: '80%' }}
+                        onPress={this.onLogin}
+                        isLoading={this.state.isLoading}
+                        bgrColor="#031cfc"
+                        txtColor="white"
+                    />
+                    <Text style={{ color: '#000', marginTop: 15, textDecorationLine: 'underline' }} onPress={this.onRegister}>Đăng ký</Text>
                 </View>
-                <Button title="Đăng nhập"
-                    styleBtn={{ marginTop: 35 }}
-                    onPress={this.onLogin}
-                    isLoading={this.state.isLoading}
-                />
-                <Text style={{ color: 'white', marginTop: 5, textDecorationLine: 'underline' }} onPress={this.onRegister}>Đăng ký</Text>
-            </View >
+                
+            </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    view1: { height: height_screen, backgroundColor: '#c991ff', alignItems: 'center', justifyContent: 'center' },
+    view1: { height: height_screen, backgroundColor: '#ffffff', alignItems: 'center',marginHorizontal: 15,  },
     textInput: { width: '100%', fontSize: 15, height: 42 },
     viewInput: { flexDirection: 'row', marginHorizontal: 15, borderBottomColor: "white", borderBottomWidth: 0.5, alignItems: 'center' },
-    image: { height: 150, width: 150, position: 'absolute', top: 60 },
+    image: { height: 150, width: 150},
     image2: { height: 16, width: 18 },
 
 })

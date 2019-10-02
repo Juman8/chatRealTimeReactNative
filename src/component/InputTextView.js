@@ -9,7 +9,7 @@ class InputTextCustom extends React.Component {
         super(props)
         this.state = {
             txtName: '',
-            txtColor: props.txtColor || 'white',
+            txtColor: props.txtColor || '#000',
             path: props.urlIcon,
             opacity: 0
         }
@@ -19,13 +19,13 @@ class InputTextCustom extends React.Component {
         const { numOfType, nameIcon, colorIcon = "white" } = this.props
         switch (numOfType) {
             case 1: {
-                return <Icon1 name={nameIcon} size={20} color={colorIcon} />
+                return <Icon1 name={nameIcon} size={20} color={colorIcon} style={{marginLeft: 15}}/>
             }
             case 2: {
-                return <Icon2 name={nameIcon} size={20} color={colorIcon} />
+                return <Icon2 name={nameIcon} size={20} color={colorIcon} style={{marginLeft: 15}} />
             }
             case 3: {
-                return <Icon3 name={nameIcon} size={20} color={colorIcon} />
+                return <Icon3 name={nameIcon} size={20} color={colorIcon} style={{marginLeft: 15}} />
             }
         }
     }
@@ -60,7 +60,7 @@ class InputTextCustom extends React.Component {
         const { placeHoder, txtStyle, viewStyle, keyboardType = "default", isPassWord = false, lable } = this.props
         let isCheck = opacity > 0
         return (
-            <View style={viewStyle}>
+            <View style={[viewStyle]}>
                 <Text style={[styles.textLable, { opacity }]}>{isPassWord && lable ? lable : placeHoder}</Text>
                 <View style={styles.viewInput}>
                     {/* <Image source={path} style={styles.image2} /> */}
@@ -70,7 +70,7 @@ class InputTextCustom extends React.Component {
                         placeholder={isCheck ? '' : placeHoder}
                         onChangeText={this.onChangeText}
                         style={[{ color: txtColor, fontSize: 17, paddingLeft: 10 }, txtStyle]}
-                        placeholderTextColor="rgba(255, 255, 255, 0.7)"
+                        placeholderTextColor="rgba(120, 120, 120, 0.9)"
                         onFocus={() => this.onForcus(true)}
                         onBlur={() => this.onForcus(false)}
                         autoCapitalize="none"
@@ -86,9 +86,9 @@ class InputTextCustom extends React.Component {
 
 const styles = StyleSheet.create({
     textInput: { width: '100%', fontSize: 17 },
-    viewInput: { flexDirection: 'row', marginHorizontal: 15, borderBottomColor: "white", borderBottomWidth: 0.5, alignItems: 'center' },
+    viewInput: { flexDirection: 'row', marginHorizontal: 15, borderBottomColor: "white", borderBottomWidth: 0.5, alignItems: 'center', backgroundColor: '#dbdbdb', borderRadius: 25 },
     image2: { height: 16, width: 18 },
-    textLable: { marginLeft: 15, color: 'white', fontSize: 16, fontWeight: '400' }
+    textLable: { marginLeft: 15, color: 'rgba(120, 120, 120, 0.9)', fontSize: 16, fontWeight: '400' }
 })
 
 

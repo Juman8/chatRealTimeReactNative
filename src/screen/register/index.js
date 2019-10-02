@@ -76,61 +76,68 @@ class RegisterScreen extends React.Component {
     render() {
         const { navigation } = this.props
         return (
-            <View style={styles.view1}>
-                <Image source={AppIcon} style={styles.image} />
-                <InputTextCustom
-                    placeHoder="Tài khoản (Email)"
-                    txtStyle={styles.textInput}
-                    onChangeText={(tx) => this.mEmail = tx}
-                    keyboardType="email-address"
-                    viewStyle={{ marginHorizontal: 10 }}
-                    numOfType={1}
-                    nameIcon="user"
-                />
+            <View style={[styles.view1, {height: height_screen}]}>
+                <View style={{ flex: 2}}>
+                    <Image source={AppIcon} style={styles.image} />
+                </View>
+                <View style={[styles.view1, {height: height_screen - 180, flex: 4, width: '100%'}]}>
+                    <InputTextCustom
+                        placeHoder="Tài khoản (Email)"
+                        txtStyle={styles.textInput}
+                        onChangeText={(tx) => this.mEmail = tx}
+                        keyboardType="email-address"
+                        viewStyle={{ marginHorizontal: 10 }}
+                        numOfType={1}
+                        nameIcon="user"
+                    />
 
-                <InputTextCustom
-                    placeHoder="Mật khẩu (tối thiểu 6 kí tự)"
-                    lable="Mật khẩu"
-                    txtStyle={styles.textInput}
-                    onChangeText={(tx) => this.mPass = tx}
-                    viewStyle={{ marginTop: 5, marginHorizontal: 10 }}
-                    numOfType={3}
-                    nameIcon="unlocked"
-                    isPassWord
-                />
-                <InputTextCustom
-                    lable="Xác nhận mật khẩu"
-                    placeHoder="Xác nhận mật khẩu"
-                    txtStyle={styles.textInput}
-                    onChangeText={(tx) => this.mConfirm = tx}
-                    viewStyle={{ marginTop: 5, marginHorizontal: 10 }}
-                    numOfType={2}
-                    nameIcon="unlock"
-                    isPassWord
-                />
+                    <InputTextCustom
+                        placeHoder="Mật khẩu (tối thiểu 6 kí tự)"
+                        lable="Mật khẩu"
+                        txtStyle={styles.textInput}
+                        onChangeText={(tx) => this.mPass = tx}
+                        viewStyle={{ marginTop: 5, marginHorizontal: 10 }}
+                        numOfType={3}
+                        nameIcon="unlocked"
+                        isPassWord
+                    />
+                    <InputTextCustom
+                        lable="Xác nhận mật khẩu"
+                        placeHoder="Xác nhận mật khẩu"
+                        txtStyle={styles.textInput}
+                        onChangeText={(tx) => this.mConfirm = tx}
+                        viewStyle={{ marginTop: 5, marginHorizontal: 10 }}
+                        numOfType={2}
+                        nameIcon="unlock"
+                        isPassWord
+                    />
 
-                <Button
-                    title="Đăng ký"
-                    styleBtn={{
-                        marginTop: 35,
-                    }}
-                    onPress={this.onRegister}
-                    isLoading={this.state.isLoading}
-                />
+                    <Button
+                        title="Đăng ký"
+                        styleBtn={{
+                            marginTop: 35,
+                            width: "80%"
+                        }}
+                        onPress={this.onRegister}
+                        isLoading={this.state.isLoading}
+                        bgrColor="#031cfc"
+                        txtColor="white"
+                    />
 
-                <AntDesign name={"close"} size={25} style={{ position: 'absolute', paddingLeft: 15, paddingBottom: 8, left: 0, top: 15 }} color="white"
-                    onPress={this.onPress}
-                />
+                </View>
+                <AntDesign name={"close"} size={25} style={{ position: 'absolute', paddingLeft: 15, paddingBottom: 8, left: 0, top: 20 }} color="#000"
+                        onPress={this.onPress}
+                    />
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    view1: { height: height_screen, backgroundColor: '#c991ff', alignItems: 'center', justifyContent: 'center' },
+    view1: { backgroundColor: '#fff', alignItems: 'center' },
     textInput: { width: '100%', fontSize: 15, height: 42 },
     viewInput: { flexDirection: 'row', marginHorizontal: 15, borderBottomColor: "white", borderBottomWidth: 0.5, alignItems: 'center' },
-    image: { height: 150, width: 150, position: 'absolute', top: 60 },
+    image: { height: 150, width: 150, marginVertical: 15 },
     image2: { height: 16, width: 18 },
 
 })

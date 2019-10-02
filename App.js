@@ -5,6 +5,7 @@ import AppNavigator from './src/navigation'
 import Toast from 'react-native-easy-toast'
 import utils from './src/utils'
 import firebase from 'firebase';
+import SplashScreen from 'react-native-splash-screen'
 
 const AppContainer = createAppContainer(AppNavigator);
 
@@ -29,6 +30,7 @@ class App extends React.Component {
     }
 
     utils.setToast(this.Toast)
+    SplashScreen.hide();
   }
   render() {
     return (
