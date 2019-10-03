@@ -30,21 +30,12 @@ target 'chatSimple' do
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
+  pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker/RNImageCropPicker.podspec'
 
-  target 'chatSimpleTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Messaging'
   use_native_modules!
 end
 
-target 'chatSimple-tvOS' do
-  # Pods for chatSimple-tvOS
-
-  target 'chatSimple-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end

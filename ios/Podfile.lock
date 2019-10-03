@@ -1,6 +1,53 @@
 PODS:
   - boost-for-react-native (1.63.0)
+  - Crashlytics (3.13.4):
+    - Fabric (~> 1.10.2)
   - DoubleConversion (1.1.6)
+  - Fabric (1.10.2)
+  - Firebase/Analytics (6.7.0):
+    - Firebase/Core
+  - Firebase/Core (6.7.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 6.1.1)
+  - Firebase/CoreOnly (6.7.0):
+    - FirebaseCore (= 6.2.1)
+  - Firebase/Messaging (6.7.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.1.3)
+  - FirebaseAnalytics (6.1.1):
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.2)
+    - GoogleAppMeasurement (= 6.1.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.4.0)
+  - FirebaseCore (6.2.1):
+    - FirebaseCoreDiagnostics (~> 1.0)
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnostics (1.0.1):
+    - FirebaseCoreDiagnosticsInterop (~> 1.0)
+    - GoogleDataTransportCCTSupport (~> 1.0)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Logger (~> 6.2)
+  - FirebaseCoreDiagnosticsInterop (1.0.0)
+  - FirebaseInstanceID (4.2.3):
+    - FirebaseCore (~> 6.0)
+    - GoogleUtilities/Environment (~> 6.0)
+    - GoogleUtilities/UserDefaults (~> 6.0)
+  - FirebaseMessaging (4.1.3):
+    - FirebaseAnalyticsInterop (~> 1.3)
+    - FirebaseCore (~> 6.2)
+    - FirebaseInstanceID (~> 4.1)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.2)
+    - GoogleUtilities/Environment (~> 6.2)
+    - GoogleUtilities/Reachability (~> 6.2)
+    - GoogleUtilities/UserDefaults (~> 6.2)
+    - Protobuf (~> 3.1)
   - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
@@ -11,6 +58,41 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - GoogleAppMeasurement (6.1.1):
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
+    - GoogleUtilities/MethodSwizzler (~> 6.0)
+    - GoogleUtilities/Network (~> 6.0)
+    - "GoogleUtilities/NSData+zlib (~> 6.0)"
+    - nanopb (~> 0.3)
+  - GoogleDataTransport (1.1.2)
+  - GoogleDataTransportCCTSupport (1.0.2):
+    - GoogleDataTransport (~> 1.1)
+    - nanopb
+  - GoogleUtilities/AppDelegateSwizzler (6.2.5):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (6.2.5)
+  - GoogleUtilities/Logger (6.2.5):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (6.2.5):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (6.2.5):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (6.2.5)"
+  - GoogleUtilities/Reachability (6.2.5):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (6.2.5):
+    - GoogleUtilities/Logger
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Protobuf (3.9.0)
+  - QBImagePickerController (3.4.0)
   - React (0.60.5):
     - React-Core (= 0.60.5)
     - React-DevSupport (= 0.60.5)
@@ -81,14 +163,32 @@ PODS:
     - React-Core (= 0.60.5)
   - React-RCTWebSocket (0.60.5):
     - React-Core (= 0.60.5)
+  - RNFirebase (5.5.6):
+    - Firebase/Core
+    - React
+    - RNFirebase/Crashlytics (= 5.5.6)
+  - RNFirebase/Crashlytics (5.5.6):
+    - Crashlytics
+    - Fabric
+    - Firebase/Core
+    - React
   - RNGestureHandler (1.4.1):
     - React
+  - RNImageCropPicker (0.25.2):
+    - QBImagePickerController
+    - React-Core
+    - React-RCTImage
+    - RSKImageCropper
   - RNVectorIcons (6.6.0):
     - React
+  - RSKImageCropper (2.2.3)
   - yoga (0.60.5.React)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
+  - Firebase/Analytics
+  - Firebase/Core
+  - Firebase/Messaging
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - React (from `../node_modules/react-native/`)
@@ -109,13 +209,33 @@ DEPENDENCIES:
   - React-RCTText (from `../node_modules/react-native/Libraries/Text`)
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-RCTWebSocket (from `../node_modules/react-native/Libraries/WebSocket`)
+  - RNFirebase (from `../node_modules/react-native-firebase/ios`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker/RNImageCropPicker.podspec`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseCoreDiagnostics
+    - FirebaseCoreDiagnosticsInterop
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - GoogleAppMeasurement
+    - GoogleDataTransport
+    - GoogleDataTransportCCTSupport
+    - GoogleUtilities
+    - nanopb
+    - Protobuf
+    - QBImagePickerController
+    - RSKImageCropper
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -160,8 +280,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/Libraries/Vibration"
   React-RCTWebSocket:
     :path: "../node_modules/react-native/Libraries/WebSocket"
+  RNFirebase:
+    :path: "../node_modules/react-native-firebase/ios"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNImageCropPicker:
+    :path: "../node_modules/react-native-image-crop-picker/RNImageCropPicker.podspec"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   yoga:
@@ -169,9 +293,26 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  Crashlytics: 2dfd686bcb918dc10ee0e76f7f853fe42c7bd552
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
+  Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
+  Firebase: 291d7b0a7b393f252358083b5d224884126fa46d
+  FirebaseAnalytics: 843c7f64a8f9c79f0d03281197ebe7bb1d58d477
+  FirebaseAnalyticsInterop: d48b6ab67bcf016a05e55b71fc39c61c0cb6b7f3
+  FirebaseCore: 32b48f41c84a56fbde73b35ed01a830b3b6dc048
+  FirebaseCoreDiagnostics: 4c04ae09d0ab027c30179828c6bb47764df1bd13
+  FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
+  FirebaseInstanceID: 8b42755db950682e7de0d167bc6fb26a57b244af
+  FirebaseMessaging: 930e4cce01f8f1e634cfdd1881db471fb61be883
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
+  GoogleDataTransport: 9c3d63ed82f882a9a74d4be67dd7ad01bf046102
+  GoogleDataTransportCCTSupport: 6b545f7149111180763dc18c6f372c963de4a310
+  GoogleUtilities: e7dc37039b19df7fe543479d3e4a02ac8d11bb69
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 1097ca58584c8d9be81bfbf2c5ff5975648dd87a
+  QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: c438ccc7e14e86d4702bb92d7e262f549ffaa995
   React-Core: c76495f5c14e73c0f803b89c3fa83f804da61bd6
   React-cxxreact: f64bc64cf4682d6ea5a064f6017da72482858682
@@ -190,10 +331,13 @@ SPEC CHECKSUMS:
   React-RCTText: 36c0532feb5521cb295ba80e7e44b70cf1c36fc7
   React-RCTVibration: dabb8d59bb47e1d9124b3f77bfdc1b33d42b0a74
   React-RCTWebSocket: 2e7f6e98fd6d2bf447d145e499c3a235cc13e350
+  RNFirebase: ca408d6bee0ca9383bd0cfe84f40b01370b8ad4d
   RNGestureHandler: 311e3b1cef021a7c9ef31e97e7dc31970cc6288d
+  RNImageCropPicker: c406db73f02f11bf3a887f856ff04ee50af173f4
   RNVectorIcons: 66af4d5c8ff4f584c7b7cd9c4b0780920f27fce2
+  RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   yoga: 88c514f310aff89b94a14c5fbf44b95735af0cb7
 
-PODFILE CHECKSUM: f16f812e3f828d3d93ccc2e409ea4506b3ab8f7a
+PODFILE CHECKSUM: 29cdd71593046e904ec61008ef80ab8e5b44e4ec
 
 COCOAPODS: 1.5.3

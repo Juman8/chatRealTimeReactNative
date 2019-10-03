@@ -72,10 +72,11 @@ class ChatScreen extends React.Component {
     }
     
     render() {
+      const {item} = this.state
         return (
             <View style={{flex: 1}}>
                 <Header
-                    title="Trần Thanh Cao"
+                    title={item.Name || ''}
                     navigation={this.props.navigation}
                     back
                 />
