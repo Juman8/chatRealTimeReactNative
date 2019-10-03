@@ -8,7 +8,7 @@ class InputTextCustom extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            txtName: '',
+            txtName: props.value || '',
             txtColor: props.txtColor || '#000',
             path: props.urlIcon,
             opacity: 0

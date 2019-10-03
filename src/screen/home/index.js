@@ -8,8 +8,8 @@ class Home extends React.Component {
     state = {
         // name: 'test1@gmail.com',
         // pass: 'test123'
-        name: '',
-        pass: '',
+        name: 'test1@gmail.com',
+        pass: '123123',
         isLoading: false
     }
     componentDidMount() {
@@ -36,16 +36,18 @@ class Home extends React.Component {
         utils.onLogin(user, this.loginSuccess, this.loginFailed)
     }
 
-    loginSuccess = () => {
-        console.log('SUCCESS')
+    loginSuccess = (e) => {
         this.setState({ isLoading: false })
-        this.props.navigation.navigate('Chat')
+        let data={
+            email: this.state.name,
+            avatar: '',
+        }
+        this.props.navigation.replace('UserScreen', {data})
     }
 
     loginFailed = (err) => {
         this.setState({ isLoading: false })
         utils.showToast(err.message, 1500)
-        console.log('Failed', err.message)
     }
 
     onRegister = () => {
@@ -68,6 +70,7 @@ class Home extends React.Component {
                         numOfType={1}
                         nameIcon="user"
                         txtColor="#000"
+                        value={this.state.name}
                     />
 
                     <InputTextCustom
@@ -79,6 +82,7 @@ class Home extends React.Component {
                         nameIcon="unlocked"
                         txtColor="#000"
                         isPassWord
+                        value={this.state.pass}
                     />
                     <Button title="Đăng nhập"
                         styleBtn={{ marginTop: 35, width: '80%' }}

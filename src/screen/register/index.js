@@ -6,6 +6,8 @@ import { height_screen } from '../../config'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 import utils from '../../utils'
 import firebase from 'firebase'
+import firebaseSvc from '../../FirebaseSvc'
+
 class RegisterScreen extends React.Component {
 
     constructor(props) {
@@ -16,12 +18,17 @@ class RegisterScreen extends React.Component {
         this.mEmail = ""
         this.mPass = ""
         this.mConfirm = ""
+        this.mUserName = ""
     }
 
     componentDidMount() {
         // console.log(utils)
         // utils.showToast('ALo')
     };
+
+    componentWillUnmount(){
+        firebaseSvc.refOff();
+    }
 
     onPress = () => {
         this.props.navigation.goBack()
@@ -35,7 +42,7 @@ class RegisterScreen extends React.Component {
     }
 
     onRegister = async () => {
-        if (!this.mEmail || !this.mPass) {
+        if (!this.mEmail || !this.mPass || !this.mUserName) {
             return utils.showToast("Thông tin tài khoản không được trống")
         }
         if (!this.checkEmail()) {
@@ -64,8 +71,18 @@ class RegisterScreen extends React.Component {
     }
     onSuccess = (e) => {
         console.log(e)
-        // this.props.navigation.replace('Chat')
-        this.props.navigation.navigate('Chat')
+        let data = {
+            name: this.mUserName,
+            email: this.mEmail
+        }
+        const mValue = 'user'
+        firebaseSvc.onAddUser(data, mValue)
+        this.props.navigation.replace('UserScreen', {
+            name: this.mUserName,
+            email: this.mEmail,
+            avatar: '',
+        })
+        // this.props.navigation.navigate('Chat')
 
     }
 
@@ -81,6 +98,16 @@ class RegisterScreen extends React.Component {
                     <Image source={AppIcon} style={styles.image} />
                 </View>
                 <View style={[styles.view1, {height: height_screen - 180, flex: 4, width: '100%'}]}>
+                    
+                    <InputTextCustom
+                        placeHoder="Tên hiển thị"
+                        txtStyle={styles.textInput}
+                        onChangeText={(tx) => this.mUserName = tx}
+                        viewStyle={{ marginHorizontal: 10 }}
+                        numOfType={1}
+                        nameIcon="user"
+                    />
+
                     <InputTextCustom
                         placeHoder="Tài khoản (Email)"
                         txtStyle={styles.textInput}
@@ -126,8 +153,8 @@ class RegisterScreen extends React.Component {
 
                 </View>
                 <AntDesign name={"close"} size={25} style={{ position: 'absolute', paddingLeft: 15, paddingBottom: 8, left: 0, top: 20 }} color="#000"
-                        onPress={this.onPress}
-                    />
+                    onPress={this.onPress}
+                />
             </View>
         )
     }

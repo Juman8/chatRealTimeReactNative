@@ -1,13 +1,15 @@
 import { createStackNavigator } from 'react-navigation-stack';
-import Home from '../../src/screen/home'
-import Chat from '../../src/screen/chat'
+import Home from '../screen/home'
+import Chat from '../screen/chat'
 import utils from '../utils'
+import UserScreen from '../screen/UserScreen'
 import RegisterScreen from '../../src/screen/register'
 
 const AppNavigator = createStackNavigator({
     Home: { screen: Home },
     Chat: { screen: Chat },
-    RegisterScreen: { screen: RegisterScreen }
+    RegisterScreen: { screen: RegisterScreen },
+    UserScreen: {screen: UserScreen}
 }, {
         headerMode: "none",
         initialRouteName: 'Home',
